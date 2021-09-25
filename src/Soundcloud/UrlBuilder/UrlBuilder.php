@@ -39,11 +39,11 @@ class UrlBuilder implements UrlBuilderInterface
         $url .= $this->getCleanPath($this->resource->getPath());
         $verb = strtoupper($this->resource->getVerb());
         $params = $this->resource->getParams();
-        
+        unset($params['oauth_token']);
         if ($verb === 'GET' && empty($params) !== true) {
             $url .= '?' . http_build_query($params);
         }
-
+        
         return $url;
     }
     
